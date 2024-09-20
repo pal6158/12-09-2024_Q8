@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Reader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        iframe {
+            margin-top: 20px;
+            width: 80%;
+            height: 600px;
+            border: none;
+        }
+    </style>
+    <script>
+        // JavaScript to extract query parameters and dynamically display the book name and PDF
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const title = params.get('title');
+            const pdf = params.get('pdf');
+
+            document.getElementById('book-title').innerText = title;
+
+            if (pdf) {
+                const iframe = document.createElement('iframe');
+                iframe.src = pdf;
+                document.getElementById('pdf-container').appendChild(iframe);
+            } else {
+                document.getElementById('pdf-container').innerHTML = '<p>PDF not available</p>';
+            }
+        };
+    </script>
+</head>
+<body>
+
+    <h1 id="book-title">Book Name</h1>
+    <div id="pdf-container"></div>
+
+</body>
+</html>
